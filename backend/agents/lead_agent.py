@@ -81,10 +81,9 @@ class LeadAgent(BaseAgent):
         self.update_status(AgentStatus.WORKING, 50, "Creating system design")
         await asyncio.sleep(2)  # Simulate AI processing time
         
-        design_content = await self.call_openai([
-            {"role": "system", "content": "You are an expert software architect with years of experience in system design and project planning."},
+        design_content = await self._call_llm([
             {"role": "user", "content": design_prompt}
-        ])
+        ], system_prompt="You are an expert software architect with years of experience in system design and project planning.")
         
         self.log(LogLevel.INFO, "📋 Creating detailed implementation roadmap for development team")
         self.update_status(AgentStatus.WORKING, 70, "Creating implementation roadmap")
@@ -123,10 +122,9 @@ class LeadAgent(BaseAgent):
         Make this actionable for the development agents.
         """
         
-        roadmap_content = await self.call_openai([
-            {"role": "system", "content": "You are an expert project manager specializing in software development workflows."},
+        roadmap_content = await self._call_llm([
             {"role": "user", "content": roadmap_prompt}
-        ])
+        ], system_prompt="You are an expert project manager specializing in software development workflows.")
         
         files = [
             GeneratedFile(

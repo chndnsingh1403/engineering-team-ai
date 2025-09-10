@@ -147,7 +147,7 @@ class DocumentationAgent(BaseAgent):
         Use proper Markdown formatting with badges, code blocks, and links.
         """
         
-        readme_content = await self.call_openai([
+        readme_content = await self._call_llm([
             {"role": "system", "content": "You are an expert technical writer specializing in creating outstanding README files. Write clear, comprehensive documentation."},
             {"role": "user", "content": readme_prompt}
         ])
@@ -220,7 +220,7 @@ class DocumentationAgent(BaseAgent):
         Make it comprehensive and developer-friendly with lots of examples.
         """
         
-        api_ref_content = await self.call_openai([
+        api_ref_content = await self._call_llm([
             {"role": "system", "content": "You are an expert API documentation writer. Create clear, comprehensive API docs with examples."},
             {"role": "user", "content": api_ref_prompt}
         ])
@@ -250,7 +250,7 @@ class DocumentationAgent(BaseAgent):
             Make it valid OpenAPI 3.0 YAML.
             """
             
-            openapi_content = await self.call_openai([
+            openapi_content = await self._call_llm([
                 {"role": "system", "content": "You are an expert in OpenAPI specification. Create valid, comprehensive OpenAPI 3.0 YAML."},
                 {"role": "user", "content": openapi_prompt}
             ])
@@ -316,7 +316,7 @@ class DocumentationAgent(BaseAgent):
         Include placeholders for screenshots and videos.
         """
         
-        user_guide_content = await self.call_openai([
+        user_guide_content = await self._call_llm([
             {"role": "system", "content": "You are an expert technical writer specializing in user-friendly documentation. Write clear, accessible guides for end users."},
             {"role": "user", "content": user_guide_prompt}
         ])
@@ -386,7 +386,7 @@ class DocumentationAgent(BaseAgent):
         Make it technical but accessible to developers joining the project.
         """
         
-        architecture_content = await self.call_openai([
+        architecture_content = await self._call_llm([
             {"role": "system", "content": "You are a senior software architect. Create comprehensive architecture documentation for developers."},
             {"role": "user", "content": architecture_prompt}
         ])
@@ -440,7 +440,7 @@ class DocumentationAgent(BaseAgent):
         Make it comprehensive for new developers joining the team.
         """
         
-        dev_setup_content = await self.call_openai([
+        dev_setup_content = await self._call_llm([
             {"role": "system", "content": "You are an expert in developer experience. Create comprehensive development setup guides."},
             {"role": "user", "content": dev_setup_prompt}
         ])
@@ -522,7 +522,7 @@ class DocumentationAgent(BaseAgent):
         Provide specific examples for popular platforms.
         """
         
-        deployment_content = await self.call_openai([
+        deployment_content = await self._call_llm([
             {"role": "system", "content": "You are a DevOps expert. Create comprehensive, practical deployment guides with specific examples."},
             {"role": "user", "content": deployment_prompt}
         ])

@@ -100,7 +100,7 @@ class TestAgent(BaseAgent):
             Follow testing best practices.
             """
             
-            backend_test_content = await self.call_openai([
+            backend_test_content = await self._call_llm([
                 {"role": "system", "content": "You are an expert in Python testing with pytest. Write comprehensive, maintainable tests."},
                 {"role": "user", "content": backend_test_prompt}
             ])
@@ -129,7 +129,7 @@ class TestAgent(BaseAgent):
             Make fixtures reusable across test modules.
             """
             
-            conftest_content = await self.call_openai([
+            conftest_content = await self._call_llm([
                 {"role": "system", "content": "You are an expert in pytest fixture design. Create efficient, reusable fixtures."},
                 {"role": "user", "content": conftest_prompt}
             ])
@@ -162,7 +162,7 @@ class TestAgent(BaseAgent):
             Use Jest, supertest, and appropriate mocking libraries.
             """
             
-            js_test_content = await self.call_openai([
+            js_test_content = await self._call_llm([
                 {"role": "system", "content": "You are an expert in JavaScript/TypeScript testing with Jest. Write thorough test suites."},
                 {"role": "user", "content": js_test_prompt}
             ])
@@ -212,7 +212,7 @@ class TestAgent(BaseAgent):
             Follow testing best practices for React applications.
             """
             
-            frontend_test_content = await self.call_openai([
+            frontend_test_content = await self._call_llm([
                 {"role": "system", "content": "You are an expert in React testing with Testing Library. Write user-focused, maintainable tests."},
                 {"role": "user", "content": frontend_test_prompt}
             ])
@@ -240,7 +240,7 @@ class TestAgent(BaseAgent):
             Make testing more efficient and consistent.
             """
             
-            test_utils_content = await self.call_openai([
+            test_utils_content = await self._call_llm([
                 {"role": "system", "content": "You are an expert in React testing utilities. Create reusable testing helpers."},
                 {"role": "user", "content": test_utils_prompt}
             ])
@@ -269,7 +269,7 @@ class TestAgent(BaseAgent):
             Use appropriate Streamlit testing approaches.
             """
             
-            streamlit_test_content = await self.call_openai([
+            streamlit_test_content = await self._call_llm([
                 {"role": "system", "content": "You are an expert in Streamlit application testing."},
                 {"role": "user", "content": streamlit_test_prompt}
             ])
@@ -315,7 +315,7 @@ class TestAgent(BaseAgent):
         Focus on critical user journeys.
         """
         
-        e2e_content = await self.call_openai([
+        e2e_content = await self._call_llm([
             {"role": "system", "content": "You are an expert in end-to-end testing. Create comprehensive integration tests."},
             {"role": "user", "content": e2e_test_prompt}
         ])
@@ -427,7 +427,7 @@ factory-boy>=3.3.0
         Make it clear and actionable for developers.
         """
         
-        test_docs_content = await self.call_openai([
+        test_docs_content = await self._call_llm([
             {"role": "system", "content": "You are an expert in software testing documentation. Create clear, comprehensive guides."},
             {"role": "user", "content": test_docs_prompt}
         ])

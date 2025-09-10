@@ -69,7 +69,7 @@ class BackendAgent(BaseAgent):
         Follow FastAPI best practices and include proper documentation.
         """
         
-        main_content = await self.call_openai([
+        main_content = await self._call_llm([
             {"role": "system", "content": "You are an expert Python FastAPI developer. Write production-ready, well-structured code."},
             {"role": "user", "content": main_prompt}
         ])
@@ -101,7 +101,7 @@ class BackendAgent(BaseAgent):
         Export all models properly.
         """
         
-        models_content = await self.call_openai([
+        models_content = await self._call_llm([
             {"role": "system", "content": "You are an expert in Python data modeling with Pydantic. Create robust, validated models."},
             {"role": "user", "content": models_prompt}
         ])
@@ -134,7 +134,7 @@ class BackendAgent(BaseAgent):
         Follow REST API best practices.
         """
         
-        routes_content = await self.call_openai([
+        routes_content = await self._call_llm([
             {"role": "system", "content": "You are an expert in REST API design with FastAPI. Create well-structured, documented APIs."},
             {"role": "user", "content": routes_prompt}
         ])
@@ -167,7 +167,7 @@ class BackendAgent(BaseAgent):
         Separate business logic from API routes.
         """
         
-        services_content = await self.call_openai([
+        services_content = await self._call_llm([
             {"role": "system", "content": "You are an expert in Python backend architecture. Create clean, maintainable business logic."},
             {"role": "user", "content": services_prompt}
         ])
@@ -323,7 +323,7 @@ uvicorn main:app --host 0.0.0.0 --port 8000 --reload
         Use modern ES6+ syntax and best practices.
         """
         
-        server_content = await self.call_openai([
+        server_content = await self._call_llm([
             {"role": "system", "content": "You are an expert Node.js/Express developer. Write production-ready, secure code."},
             {"role": "user", "content": server_prompt}
         ])
@@ -362,7 +362,7 @@ uvicorn main:app --host 0.0.0.0 --port 8000 --reload
         Follow Spring Boot best practices.
         """
         
-        spring_content = await self.call_openai([
+        spring_content = await self._call_llm([
             {"role": "system", "content": "You are an expert Spring Boot developer. Write clean, well-structured Java code."},
             {"role": "user", "content": spring_prompt}
         ])
@@ -391,7 +391,7 @@ uvicorn main:app --host 0.0.0.0 --port 8000 --reload
         Include all required endpoints, models, and services.
         """
         
-        dotnet_content = await self.call_openai([
+        dotnet_content = await self._call_llm([
             {"role": "system", "content": "You are an expert ASP.NET Core developer. Write modern C# code."},
             {"role": "user", "content": dotnet_prompt}
         ])
@@ -419,7 +419,7 @@ uvicorn main:app --host 0.0.0.0 --port 8000 --reload
         Create main.go with all required handlers and middleware.
         """
         
-        go_content = await self.call_openai([
+        go_content = await self._call_llm([
             {"role": "system", "content": "You are an expert Go developer. Write idiomatic Go code."},
             {"role": "user", "content": go_prompt}
         ])
@@ -447,7 +447,7 @@ uvicorn main:app --host 0.0.0.0 --port 8000 --reload
         Create appropriate backend files following {language} best practices.
         """
         
-        content = await self.call_openai([
+        content = await self._call_llm([
             {"role": "system", "content": f"You are an expert {language} developer."},
             {"role": "user", "content": generic_prompt}
         ])

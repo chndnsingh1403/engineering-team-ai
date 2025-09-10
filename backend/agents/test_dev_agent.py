@@ -77,7 +77,7 @@ class TestDevAgent(BaseAgent):
         Ensure tests are maintainable and follow best practices.
         """
         
-        frontend_tests = await self.call_openai([
+        frontend_tests = await self._call_llm([
             {"role": "system", "content": "You are a senior frontend testing specialist expert in Jest, React Testing Library, and E2E testing."},
             {"role": "user", "content": frontend_test_prompt}
         ])
@@ -127,7 +127,7 @@ class TestDevAgent(BaseAgent):
         Include proper test data management and cleanup.
         """
         
-        backend_tests = await self.call_openai([
+        backend_tests = await self._call_llm([
             {"role": "system", "content": "You are a senior backend testing specialist expert in API testing, security testing, and performance testing."},
             {"role": "user", "content": backend_test_prompt}
         ])
@@ -168,7 +168,7 @@ class TestDevAgent(BaseAgent):
         Include scripts for running different types of tests locally and in CI.
         """
         
-        test_config = await self.call_openai([
+        test_config = await self._call_llm([
             {"role": "system", "content": "You are a DevOps engineer specializing in test automation and CI/CD pipelines."},
             {"role": "user", "content": test_config_prompt}
         ])

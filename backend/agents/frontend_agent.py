@@ -77,7 +77,7 @@ class FrontendAgent(BaseAgent):
         Return only valid JSON for package.json.
         """
         
-        package_content = await self.call_openai([
+        package_content = await self._call_llm([
             {"role": "system", "content": "You are an expert React developer. Return only valid JSON."},
             {"role": "user", "content": package_json_prompt}
         ])
@@ -110,7 +110,7 @@ class FrontendAgent(BaseAgent):
         Follow modern React best practices and include proper TypeScript types.
         """
         
-        app_content = await self.call_openai([
+        app_content = await self._call_llm([
             {"role": "system", "content": "You are an expert React TypeScript developer. Write clean, modern, production-ready code."},
             {"role": "user", "content": app_prompt}
         ])
@@ -143,7 +143,7 @@ class FrontendAgent(BaseAgent):
         Name the file MainPage.tsx and export as default.
         """
         
-        main_page_content = await self.call_openai([
+        main_page_content = await self._call_llm([
             {"role": "system", "content": "You are an expert React developer. Create production-ready, accessible components."},
             {"role": "user", "content": main_page_prompt}
         ])
@@ -175,7 +175,7 @@ class FrontendAgent(BaseAgent):
         Export all functions and types.
         """
         
-        api_content = await self.call_openai([
+        api_content = await self._call_llm([
             {"role": "system", "content": "You are an expert in API integration and TypeScript. Create robust, type-safe API services."},
             {"role": "user", "content": api_service_prompt}
         ])
@@ -206,7 +206,7 @@ class FrontendAgent(BaseAgent):
         Export all types and interfaces.
         """
         
-        types_content = await self.call_openai([
+        types_content = await self._call_llm([
             {"role": "system", "content": "You are a TypeScript expert. Create comprehensive, reusable type definitions."},
             {"role": "user", "content": types_prompt}
         ])
@@ -293,7 +293,7 @@ export default {
         Use Streamlit's latest features and best practices.
         """
         
-        app_content = await self.call_openai([
+        app_content = await self._call_llm([
             {"role": "system", "content": "You are an expert Python developer specializing in Streamlit applications."},
             {"role": "user", "content": streamlit_prompt}
         ])
@@ -343,7 +343,7 @@ plotly>=5.17.0
         Follow {language} best practices and conventions.
         """
         
-        content = await self.call_openai([
+        content = await self._call_llm([
             {"role": "system", "content": f"You are an expert {language} developer specializing in web frontend development."},
             {"role": "user", "content": frontend_prompt}
         ])

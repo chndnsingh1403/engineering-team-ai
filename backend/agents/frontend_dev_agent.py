@@ -71,7 +71,7 @@ class FrontendDevAgent(BaseAgent):
         self.update_status(AgentStatus.WORKING, 40, "Creating main components")
         await asyncio.sleep(2)
         
-        frontend_code = await self.call_openai([
+        frontend_code = await self._call_llm([
             {"role": "system", "content": "You are a senior frontend developer expert in React, TypeScript, and modern web development."},
             {"role": "user", "content": frontend_prompt}
         ])
@@ -106,7 +106,7 @@ class FrontendDevAgent(BaseAgent):
         - Has proper props and state management
         """
         
-        components_code = await self.call_openai([
+        components_code = await self._call_llm([
             {"role": "system", "content": "You are an expert React developer creating production-ready components."},
             {"role": "user", "content": components_prompt}
         ])
@@ -129,7 +129,7 @@ class FrontendDevAgent(BaseAgent):
         Ensure all configurations are optimized for development and production.
         """
         
-        config_files = await self.call_openai([
+        config_files = await self._call_llm([
             {"role": "system", "content": "You are a frontend build engineer expert in project configuration and tooling."},
             {"role": "user", "content": config_prompt}
         ])

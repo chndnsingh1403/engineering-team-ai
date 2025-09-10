@@ -82,10 +82,9 @@ class BackendDevAgent(BaseAgent):
         
         self.update_status(AgentStatus.WORKING, 30, "Creating API structure")
         
-        backend_code = await self.call_openai([
-            {"role": "system", "content": f"You are a senior backend developer expert in {framework} and {language}."},
+        backend_code = await self._call_llm([
             {"role": "user", "content": backend_prompt}
-        ])
+        ], system_prompt=f"You are a senior backend developer expert in {framework} and {language}.")
         
         self.update_status(AgentStatus.WORKING, 50, "Implementing core services")
         
@@ -115,10 +114,9 @@ class BackendDevAgent(BaseAgent):
         - Include proper logging
         """
         
-        services_code = await self.call_openai([
-            {"role": "system", "content": f"You are an expert {language} backend developer creating scalable applications."},
+        services_code = await self._call_llm([
             {"role": "user", "content": services_prompt}
-        ])
+        ], system_prompt=f"You are an expert {language} backend developer creating scalable applications.")
         
         self.update_status(AgentStatus.WORKING, 70, "Creating configuration files")
         
@@ -138,10 +136,9 @@ class BackendDevAgent(BaseAgent):
         Include proper documentation and setup instructions.
         """
         
-        config_files = await self.call_openai([
-            {"role": "system", "content": "You are a DevOps engineer expert in backend deployment and configuration."},
+        config_files = await self._call_llm([
             {"role": "user", "content": config_prompt}
-        ])
+        ], system_prompt="You are a DevOps engineer expert in backend deployment and configuration.")
         
         self.update_status(AgentStatus.WORKING, 90, "Finalizing backend structure")
         
@@ -165,10 +162,9 @@ class BackendDevAgent(BaseAgent):
         - Environment setup
         """
         
-        documentation = await self.call_openai([
-            {"role": "system", "content": "You are a technical writer specializing in API documentation."},
+        documentation = await self._call_llm([
             {"role": "user", "content": docs_prompt}
-        ])
+        ], system_prompt="You are a technical writer specializing in API documentation.")
         
         # Generate files based on language/framework
         files = self._generate_backend_files(
